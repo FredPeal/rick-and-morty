@@ -1,0 +1,10 @@
+{
+    "name": "challenge/rick-and-morty-challenge",
+    "version": "1.0.0",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "Challenge\\": "src/"
+    }
+}
