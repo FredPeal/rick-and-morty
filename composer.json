@@ -5,6 +5,11 @@
         "guzzlehttp/guzzle": "^7.0"
     },
     "autoload": {
-        "Challenge\\": "src/"
+        "classmap": [
+            "src"
+        ]
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.2"
     }
 }
