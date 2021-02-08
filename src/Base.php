@@ -56,7 +56,7 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
-            if (!getenv('APP_PRODUCTION')) {
+            if (!$_ENV['APP_PRODUCTION']) {
                 break;
             }
         }
@@ -126,7 +126,7 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
-            if (!getenv('APP_PRODUCTION')) {
+            if (!$_ENV['APP_PRODUCTION']) {
                 break;
             }
         }
