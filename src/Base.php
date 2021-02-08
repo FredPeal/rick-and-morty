@@ -56,6 +56,9 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
+            if (!getenv('APP_PRODUCTION')) {
+                break;
+            }
         }
         $this->results = $results;
         return $count;
@@ -123,6 +126,9 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
+            if (!getenv('APP_PRODUCTION')) {
+                break;
+            }
         }
         return $results;
     }
