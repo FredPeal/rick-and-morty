@@ -5,37 +5,37 @@ if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
 }
+
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views/');
+$twig = new \Twig\Environment($loader);
+
 $executionStartTime = microtime(true);
+
 $character = new Challenge\Character();
 $episodes = (new Challenge\Episodes());
 $locations = (new Challenge\Locations());
 
-echo "Cantidad de veces que aparece la letra c en character {$character->getCount('c')} <br/>";
-echo "Cantidad de veces que aparece la letra I en location {$locations->getCount('I')} <br/>";
-echo "Cantidad de veces que aparece la letra e en episode  {$episodes->getCount('e')} <br/>";
+// Step 1
+$countCharacter = $character->getCount('c');
+$countLocation = $locations->getCount('I');
+$countEpisode = $episodes->getCount('e');
+$characters = $character->getResults();;
 $executionEndTime = microtime(true);
+$secondCounter = $executionEndTime - $executionStartTime;
 
-$seconds = $executionEndTime - $executionStartTime;
-echo "<b>El contador duro {$seconds} segundos aproximadamente <br/></b>";
+// Step 2
 $executionStartTime = microtime(true);
+$episodes->characters = $characters;
+$locationsByCharacter = $episodes->getLocationsByCharacter();
+$executionEndTime = microtime(true);
+$secondStepTwo = $executionEndTime - $executionStartTime;
 
-$episodes->characters = $character->getResults();
-echo '<h3>Esta es la parte dos del test</h3>';
-foreach ($episodes->getLocationsByCharacter() as $episode) {
-    $countLocation = count($episode['locations']);
-    echo "<ol>
-            <li> Episode {$episode['name']}, cantidad de location por personaje {$countLocation}
-                <ul>";
-
-    foreach ($episode['locations'] as $key => $location) {
-        echo "<li>Id {$key} Nombre {$location} </li>";
-    }
-    echo '</ul>
-            </li>
-        </ol>
-    ';
-    $executionEndTime = microtime(true);
-    $seconds = $executionEndTime - $executionStartTime;
-
-    echo "<b>La parte dos tomo {$seconds} aproximadamente <br/></b>";
-}
+echo $twig->render('base.html', [
+    'character' => $characters[rand(0, count($characters) - 1)],
+    'countCharacter' => $countCharacter,
+    'countLocation' => $countLocation,
+    'countEpisode' => $countEpisode,
+    'secondCounter' => $secondCounter,
+    'locationsByCharacter' => $locationsByCharacter,
+    'secondStepTwo' => $secondStepTwo
+]);

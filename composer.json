@@ -5,7 +5,8 @@
     "version": "1.0.0",
     "require": {
         "guzzlehttp/guzzle": "^7.0",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "twig/twig": "^3.0"
     },
     "autoload": {
         "classmap": [
