@@ -11,4 +11,5 @@ paths:
     output: tests/_output
     support: tests/_support
     data: tests
-     
+params:
+    - .env
