@@ -9,7 +9,7 @@ class Base
     public $client;
 
     protected string $endpoint;
-    protected array $results;
+    protected array $results = [];
     protected string $ch;
 
     /**
@@ -56,9 +56,8 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
-            // break;
         }
-
+        $this->results = $results;
         return $count;
     }
 
@@ -124,7 +123,6 @@ class Base
             }
             $totalPages = $response['info']['pages'];
             $page++;
-            break;
         }
         return $results;
     }
@@ -143,6 +141,16 @@ class Base
         $url = $id ? "{$class->getEndpoint()}/{$id}" : "{$class->getEndpoint()}";
         $response = $class->client->request('GET', $url);
         $response = json_decode($response->getBody(), true);
-        return $response['results'];
+        return $response;
+    }
+
+    /**
+     * getResults.
+     *
+     * @return array
+     */
+    public function getResults() : array
+    {
+        return $this->results;
     }
 }
