@@ -4,6 +4,7 @@ This is a solution for Rick and Morty Challenge write in php
 ## Install
 - cp .env.example .env
 - composer update
+- cp public/
 - php -S localhost: 8000
 
 ```
