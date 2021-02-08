@@ -1,0 +1,4 @@
+actor: IntegrationTester
+modules:
+    enabled:
+        - \Challenge\Helper\Integration
