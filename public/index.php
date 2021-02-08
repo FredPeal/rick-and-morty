@@ -1,9 +1,10 @@
 <?php
 
 include_once __DIR__ . '/../vendor/autoload.php';
-$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
-
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
 $executionStartTime = microtime(true);
 $character = new Challenge\Character();
 $episodes = (new Challenge\Episodes());
