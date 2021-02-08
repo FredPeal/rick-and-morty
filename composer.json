@@ -1,5 +1,7 @@
 {
     "name": "challenge/rick-and-morty-challenge",
+    "description": "It's a challenge rick and morty for interview",
+    "license": "MIT",
     "version": "1.0.0",
     "require": {
         "guzzlehttp/guzzle": "^7.0",
